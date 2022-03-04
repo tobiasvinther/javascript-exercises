@@ -13,9 +13,16 @@
 
 <body>
     <div class="container">
-        <table id="table"class="table table-hover">
-            <thead></thead>
-        </table>
+        <div>
+            <table id="table"class="table table-hover">
+                <thead></thead>
+            </table>
+        </div>
+        <div>
+            Price <input id="priceField" type="number">
+            <button  type="button" class="btn btn-primary" id="priceBtn">Filter</button>
+            <button  type="button" class="btn btn-primary" id="clearBtn">Clear filter</button>
+        </div>
     </div>
 </body>
 <script>
@@ -36,9 +43,11 @@
 
     const headers = ['Id', 'Year', 'Make', 'Model', 'Price'];
 
-    makeTable();
+    makeTable(cars);
 
-    function makeTable() {
+    function makeTable(array) {
+        let existingRowsToRemove = document.querySelectorAll('tr');
+        existingRowsToRemove.forEach(row => row.remove());
         let headerRow = document.createElement('tr');
         headers.forEach(headerText => {
             let header = document.createElement('th');
@@ -51,7 +60,7 @@
 
         table.appendChild(headerRow);
 
-        cars.forEach(emp => {
+        array.forEach(emp => {
             let row = document.createElement('tr');
             Object.values(emp).forEach(text => {
                 let cell = document.createElement('td');
@@ -62,6 +71,21 @@
             table.appendChild(row);
         });
 
+    }
+
+    function filterPrices() {
+        const desiredPriceFilter = document.getElementById("priceField").value
+        const filteredCars = cars.filter(car => car.price < desiredPriceFilter)
+        makeTable(filteredCars)
+        console.log("do we get here")
+    }
+
+    document.getElementById("priceBtn").onclick = (evt) => {
+        filterPrices()
+    }
+
+    document.getElementById("clearBtn").onclick = (evt) => {
+        makeTable(cars);
     }
 
 </script>
