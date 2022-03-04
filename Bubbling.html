@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .mydiv {
+            width: 100px; 
+            height: 100px;
+            background-color:yellow; 
+            margin: 6px;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="outer">
+        <div id="d1" class="mydiv"></div>
+        <div id="d2" class="mydiv"></div>
+        <div id="d3" class="mydiv"></div>
+        <div id="d4" class="mydiv"></div>
+        <div id="d5" class="mydiv"></div>
+        <div id="d6" class="mydiv"></div>
+        <div id="d7" class="mydiv"></div>
+        <div id="d8" class="mydiv"></div>
+        <div id="d9" class="mydiv"></div>
+        <div id="d10" class="mydiv"></div>
+    </div>
+</body>
+<script>
+    /*
+    document.getElementById("d1").onclick = (e) => alert(e.target.id)
+    document.getElementById("d2").onclick = (e) => alert(e.target.id)
+    document.getElementById("d3").onclick = (e) => alert(e.target.id)
+    document.getElementById("d4").onclick = (e) => alert(e.target.id)
+    document.getElementById("d5").onclick = (e) => alert(e.target.id)
+    document.getElementById("d6").onclick = (e) => alert(e.target.id)
+    document.getElementById("d7").onclick = (e) => alert(e.target.id)
+    document.getElementById("d8").onclick = (e) => alert(e.target.id)
+    document.getElementById("d9").onclick = (e) => alert(e.target.id)
+    document.getElementById("d10").onclick = (e) => alert(e.target.id)
+    */
+
+   //document.getElementById("outer").onclick = (e) => console.log(e.target.id)
+   document.getElementById("outer").onclick = (e) => {
+    if( e.target.id === "outer") {
+       return
+    }   
+    console.log(e.target.id)
+   }
+</script>
+
+</html>

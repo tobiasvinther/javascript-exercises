@@ -12,10 +12,9 @@
 </head>
 
 <body>
-    <div>
-        <table class="table table-striped">
+    <div class="container">
+        <table id="table"class="table table-hover">
             <thead></thead>
-            <tbody id="table"></tbody>
         </table>
     </div>
 </body>
@@ -43,7 +42,7 @@
         let headerRow = document.createElement('tr');
         headers.forEach(headerText => {
             let header = document.createElement('th');
-            //header = header + "scope=\"col\""
+            //header.classList.add(`scope="col"`);
             let textNode = document.createTextNode(headerText);
             header.appendChild(textNode);
             headerRow.appendChild(header);
@@ -62,7 +61,7 @@
             })
             table.appendChild(row);
         });
-            //table.appendChild(table);
+
     }
 
 </script>

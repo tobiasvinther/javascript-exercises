@@ -1,3 +1,7 @@
+    /****************************************************************************/
+    /* JavaScript functions and Callbacks */
+    /****************************************************************************/
+ 
  //Observe: no return type, no type on parameters
  function add(n1, n2){
     return n1 +n2;
@@ -46,13 +50,18 @@ let show = function() {
 
 show();
 
+   /****************************************************************************/
+    /* Getting comfortable with filter, map and forEach
+    /****************************************************************************/
+ 
+
 const names = ["Lars", "Jan", "Peter", "Bo", "Frederik"];
 const shortNames = names.filter(name => name.length <= 3).forEach(console.log);
-
-
 const upperNames = names.map(name => name.toUpperCase()).forEach(console.log);
 
-//Implement YOUR OWN functions that takes callbacks as arguments
+ /****************************************************************************/
+    /*Implement YOUR OWN functions that takes callbacks as arguments
+    /****************************************************************************/
 
 //takes an array as the first argument, and a callback as the second and returns a new (filtered) array according to the code provided in the callback 
 function myFilter(array, callback) {
@@ -76,23 +85,9 @@ function myFilter(array, callback) {
   return result;
 };
 
-function simonFilter(array, predicate) {
-  const result = []
-  for (const index in array) {
-      const item = array[index]
-      const should_include = predicate(item)
-      if (should_include) { 
-        result.push(item) 
-      }
-  }
-  return result
-}
 
 const shortNames1 = myFilter(names, name => name.length <= 3);
 console.log(shortNames1);
-
-const shortNames2 = simonFilter(names, name => name.length <= 3);
-console.log(shortNames2);
 
 //my own map function
 function myMap(array, callback) {
@@ -113,15 +108,6 @@ const upperNames1 = myMap(names, name => name.toUpperCase());
 console.log("Using my own map function, result us: " + upperNames1);
 
 
-const msgPrinter = function(msg,delay){
-  setTimeout(() => console.log(msg),delay); //Observe an arrow-function
-};
-console.log("aaaaaaaaaa");
-msgPrinter ("bbbbbbbbbb",2000);
-console.log("dddddddddd");
-msgPrinter ("eeeeeeeeee",1000);
-console.log("ffffffffff");
-
 //setup
 const cars = [
   { id: 1, year: 1997, make: 'Ford', model: 'E350', price: 3000 },
@@ -140,7 +126,23 @@ console.log(allVolvos);
 const priceUnder5000 = myFilter(cars, car => car.price < 5000);
 console.log(priceUnder5000);
 
-//JavaScript objects
+  /****************************************************************************/
+    /* Asynchronous Callbacks
+    /****************************************************************************/
+
+const msgPrinter = function(msg,delay){
+    setTimeout(() => console.log(msg),delay); //Observe an arrow-function
+    };
+    console.log("aaaaaaaaaa"); //this will print first
+    msgPrinter ("bbbbbbbbbb",2000); //this fifth
+    console.log("dddddddddd"); //this second
+    msgPrinter ("eeeeeeeeee",1000); //this fourt
+    console.log("ffffffffff"); //this third
+
+   /****************************************************************************/
+    /* JavaScript objects
+    /****************************************************************************/
+
 let me = {name: "Tobias", gender: "Male", hobby: "Drawing", email: "email@email.com", shoeSize: 43}
 
 for(let prop in me){
@@ -160,3 +162,5 @@ me.height = 180
 for(let prop in me){
   console.log(prop, me[prop])
 }
+
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="my-ul">
+    </ul>
+    <form>
+        <input type="text" id="txt">
+            <button id="btn-add">Add name</button>
+        </input>
+        <input type="text" id="desiredNameLength">
+            <button id="btn-filter">Filter</button>
+        </input>
+        <button id="btn-b2">Remove First</button>
+        <button id="btn-b3">Remove Last</button>
+    </form>
+</body>
+<script>
+
+    const names = ["Amanda", "Christian", "Peter", "Mark", "Lars"]
+    makeListItems()
+
+    document.getElementById("btn-add").onclick = addName //no parenthesis on function call because we only want a reference, not call it immediatly
+    document.getElementById("btn-filter").onclick = filterList
+    
+    function makeListItems() {
+        //const listItems = names.map(name => "<li>" + name + "</li>")
+        const listItems = names.map(name => `<li> ${name} </li>`) //same as above
+        const itemsAsString = listItems.join("\n")
+        document.getElementById("my-ul").innerHTML = itemsAsString 
+    }
+
+    //a filter that filters the list by name length based on user input
+    function filterList(evt) {
+        evt.preventDefault() //prevent default beavious (submit)
+        let itemsAsString = names;
+        const desiredNameLength = document.getElementById("desiredNameLength").value
+        itemsAsString = names.filter(name => name.length > desiredNameLength).map(name => `<li> ${name} </li>`).join("\n")
+        document.getElementById("my-ul").innerHTML = itemsAsString 
+    }
+
+    function addName(evt) {
+        evt.preventDefault() //as mentioned above we don't want it to submit (it's default behaviour), so we disable that //because a button inside a form has a default behaviour which is submit, the page will do a post request and contact the server and reload the page. We want to prevent that in this case
+        const inputField = document.getElementById("txt")
+        const newName = inputField.value
+        console.log(newName)
+        names.push(newName)
+        makeListItems()
+    }
+
+    document.getElementById("btn-b2").onclick = (evt) => {
+        evt.preventDefault()
+        names.shift()
+        makeListItems();
+    }
+
+    document.getElementById("btn-b3").onclick = (evt) => {
+        evt.preventDefault()
+        names.pop()
+        makeListItems();
+    }
+
+    //Utility function you can use to escape "untrusted" data inputs
+    //Ref: https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
+    function encode(str) {
+        str = str.replace(/&/g, "&amp;");
+        str = str.replace(/>/g, "&gt;");
+        str = str.replace(/</g, "&lt;");
+        str = str.replace(/"/g, "&quot;");
+        str = str.replace(/'/g, "&#039;");
+        return str;
+    }
+    
+    /*
+    const myUl = document.getElementById("my-ul")
+    myUl.innerHTML = itemsAsString; //dangerous to use innerHtml
+    */
+    
+</script>
+</html>
